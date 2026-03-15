@@ -1,0 +1,16 @@
+/* BOXES */
+.globalBox {
+    -fx-background-color: #15161B;
+    -fx-background-radius: 8px;
+}
+/* LABELS */
+.labelTypeA {
+    -fx-font-size: 24px;
+    -fx-font-family: "Arial Narrow";
+    -fx-text-fill: #E7CDC8;
+}
+/* IMG_BUTTONS */
+.button-typeA:hover{
+    -fx-opacity: 0.8;
+    -fx-cursor: hand;
+}

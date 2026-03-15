@@ -1,6 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.zeki.infobooks.controller.MainMenuViewController" />
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="800.0" fitWidth="1200.0" pickOnBounds="true">
+         <image>
+            <Image url="@../img/main_bg.png" />
+         </image>
+      </ImageView>
+      <VBox alignment="TOP_CENTER">
+         <children>
+            <ImageView fx:id="titleImg" fitHeight="208.0" fitWidth="750.0" pickOnBounds="true" preserveRatio="true" styleClass="button-typeA">
+               <image>
+                  <Image url="@../img/title.png" />
+               </image>
+               <VBox.margin>
+                  <Insets top="35.0" />
+               </VBox.margin>
+            </ImageView>
+            <VBox fx:id="mainMenuBox" alignment="CENTER" spacing="20.0">
+               <children>
+                  <ImageView fx:id="catalogImg" fitHeight="70.0" fitWidth="450.0" pickOnBounds="true" styleClass="button-typeA">
+                     <image>
+                        <Image url="@../img/btn_catalog.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="searchImg" fitHeight="70.0" fitWidth="450.0" layoutX="385.0" layoutY="75.0" pickOnBounds="true" styleClass="button-typeA">
+                     <image>
+                        <Image url="@../img/btn_id.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="favouritesImg" fitHeight="70.0" fitWidth="450.0" layoutX="385.0" layoutY="120.0" pickOnBounds="true" styleClass="button-typeA">
+                     <image>
+                        <Image url="@../img/btn_favourites.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="exportImg" fitHeight="70.0" fitWidth="450.0" layoutX="385.0" layoutY="190.0" pickOnBounds="true" styleClass="button-typeA">
+                     <image>
+                        <Image url="@../img/btn_export.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="importImg" fitHeight="70.0" fitWidth="450.0" layoutX="385.0" layoutY="280.0" pickOnBounds="true" styleClass="button-typeA">
+                     <image>
+                        <Image url="@../img/btn_import.png" />
+                     </image>
+                  </ImageView>
+                  <VBox fx:id="feedbackBox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="500.0" styleClass="globalBox" visible="false">
+                     <children>
+                        <Label fx:id="feedBackLabel" styleClass="labelTypeA" text="Este sera el mensaje de feedback" />
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </children>
+</StackPane>
