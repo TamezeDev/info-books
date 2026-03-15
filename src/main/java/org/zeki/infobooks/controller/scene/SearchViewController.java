@@ -1,4 +1,4 @@
-package org.zeki.infobooks.controller;
+package org.zeki.infobooks.controller.scene;
 
 import javafx.fxml.Initializable;
 

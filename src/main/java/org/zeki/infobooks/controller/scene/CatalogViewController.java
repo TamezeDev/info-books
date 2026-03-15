@@ -1,10 +1,9 @@
-package org.zeki.infobooks.controller;
+package org.zeki.infobooks.controller.scene;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 

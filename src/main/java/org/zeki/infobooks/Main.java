@@ -1,7 +1,7 @@
 package org.zeki.infobooks;
 
 import javafx.application.Application;
-import org.zeki.infobooks.controller.InitAppController;
+import org.zeki.infobooks.controller.scene.InitAppController;
 
 public class Main {
     public static void main(String[] args) {

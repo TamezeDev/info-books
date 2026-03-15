@@ -10,45 +10,55 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.zeki.infobooks.controller.CatalogViewController">
-   <children>
-      <ImageView fitHeight="800.0" fitWidth="1200.0" pickOnBounds="true">
-         <image>
-            <Image url="@../img/main_bg.png" />
-         </image>
-      </ImageView>
-      <VBox alignment="TOP_CENTER">
-         <children>
-            <ImageView fitHeight="208.0" fitWidth="750.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../img/title.png" />
-               </image>
-               <VBox.margin>
-                  <Insets top="35.0" />
-               </VBox.margin>
-            </ImageView>
-            <VBox alignment="CENTER" spacing="20.0">
-               <children>
-                  <ScrollPane maxHeight="600.0" maxWidth="-Infinity" prefWidth="800.0">
-                    <content>
-                        <FlowPane fx:id="containerBookPane" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="780.0" rowValignment="TOP" styleClass="globalPane">
-                           <padding>
-                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                           </padding></FlowPane>
-                    </content>
-                  </ScrollPane>
-                  <VBox fx:id="feedbackBox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="500.0" styleClass="global_bg, button-typeA" visible="false">
-                     <children>
-                        <Label fx:id="feedBackLabel" styleClass="labelTypeA" text="Este sera el mensaje de feedback" />
-                     </children>
-                  </VBox>
-                  <Button fx:id="goBackBtn" mnemonicParsing="false" styleClass="global_bg " text="Regresar al menú" />
-               </children>
-               <padding>
-                  <Insets bottom="30.0" />
-               </padding>
-            </VBox>
-         </children>
-      </VBox>
-   </children>
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0"
+           prefWidth="1200.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/25"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="org.zeki.infobooks.controller.scene.CatalogViewController">
+    <children>
+        <ImageView fitHeight="800.0" fitWidth="1200.0" pickOnBounds="true">
+            <image>
+                <Image url="@../img/main_bg.png"/>
+            </image>
+        </ImageView>
+        <VBox alignment="TOP_CENTER">
+            <children>
+                <ImageView fitHeight="208.0" fitWidth="750.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../img/title.png"/>
+                    </image>
+                    <VBox.margin>
+                        <Insets top="35.0"/>
+                    </VBox.margin>
+                </ImageView>
+                <VBox alignment="CENTER" spacing="20.0">
+                    <children>
+                        <ScrollPane maxHeight="600.0" maxWidth="-Infinity" prefWidth="800.0">
+                            <content>
+                                <FlowPane fx:id="containerBookPane" alignment="CENTER" maxHeight="-Infinity"
+                                          maxWidth="-Infinity" prefWidth="780.0" rowValignment="TOP"
+                                          styleClass="globalPane">
+                                    <padding>
+                                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+                                    </padding>
+                                </FlowPane>
+                            </content>
+                        </ScrollPane>
+                        <VBox fx:id="feedbackBox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity"
+                              prefHeight="50.0" prefWidth="500.0" styleClass="global_bg,feedBack_bg ,button-typeA"
+                              visible="false">
+                            <children>
+                                <Label fx:id="feedBackLabel" styleClass="labelTypeA"
+                                       text="Este sera el mensaje de feedback"/>
+                            </children>
+                        </VBox>
+                        <Button fx:id="goBackBtn" mnemonicParsing="false" styleClass="global_bg, btn_bg "
+                                text="Regresar al menú"/>
+                    </children>
+                    <padding>
+                        <Insets bottom="30.0"/>
+                    </padding>
+                </VBox>
+            </children>
+        </VBox>
+    </children>
 </StackPane>

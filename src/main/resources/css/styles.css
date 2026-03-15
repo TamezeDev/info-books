@@ -10,8 +10,13 @@
     -fx-cursor: hand;
 }
 /* GLOBAL CASE */
+.btn_bg {
+     -fx-background-image: url("../img/btn_base_bg.png");
+ }
+.feedBack_bg {
+    -fx-background-image: url("../img/btn_bg.png");
+}
 .global_bg {
-    -fx-background-image: url("../img/btn_base_bg.png");
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
     -fx-background-size: contain;
