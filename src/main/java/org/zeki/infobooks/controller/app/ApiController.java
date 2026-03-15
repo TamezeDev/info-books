@@ -1,11 +1,10 @@
-package org.zeki.infobooks.controller.api;
+package org.zeki.infobooks.controller.app;
 
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.zeki.infobooks.model.Book;
-import org.zeki.infobooks.model.Library;
 import org.zeki.infobooks.model.Villain;
 import org.zeki.infobooks.util.TransitionHelper;
 
@@ -16,7 +15,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 public class ApiController {
-    private final String URL_BASE = "https://stephen-king-api.onrender.com/api/books";
+    private final String URL_BASE = "https://stephen-king-api.onrender.com/api/book";
     private String feedbackMessage;
 
     private String getData(String path, VBox feedbackBox) {
@@ -37,9 +36,23 @@ public class ApiController {
         return response.body().toString();
     }
 
+    public Book getSingleBook(VBox feedbackBox, String id) {
+        // GET DATA
+        String body = getData((URL_BASE + "/" + id), feedbackBox);
+        if (body == null || body.isEmpty()) {
+            feedbackMessage = "Datos vacíos o dañados";
+            TransitionHelper.feedBackTransition(feedbackBox, feedbackMessage);
+            return null;
+        }
+        JSONObject bodyObject = new JSONObject(body);
+        JSONObject jsonObject = bodyObject.getJSONObject("data");
+        // CREATE BOOK
+        return AppController.getInstance().getLibraryController().createBook(jsonObject);
+    }
+
     public void getAllBooks(VBox feedbackBox) {
         // GET DATA
-        String body = getData(URL_BASE, feedbackBox);
+        String body = getData(URL_BASE + "s", feedbackBox);
         if (body == null || body.isEmpty()) {
             feedbackMessage = "Datos vacíos o dañados";
             TransitionHelper.feedBackTransition(feedbackBox, feedbackMessage);
@@ -49,31 +62,16 @@ public class ApiController {
         JSONObject bodyObject = new JSONObject(body);
         JSONArray dataArray = bodyObject.getJSONArray("data");
         //CREATE EACH BOOK FROM JSON ARRAY
+        Book book = null;
         for (int i = 0; i < dataArray.length(); i++) {
 
             JSONObject bookObject = dataArray.getJSONObject(i);
-            Book book = new Book();
-            book.setId(bookObject.getLong("id"));
-            book.setYear(bookObject.getLong("Year"));
-            book.setTitle(bookObject.getString("Title"));
-            book.setPublisher(bookObject.getString("Publisher"));
-            book.setIsbn(bookObject.getString("ISBN"));
-            book.setPages(bookObject.getLong("Pages"));
-
-            // CREATE VILLAINS LIST
-            if (bodyObject.has("villains")) {
-                JSONArray villainsArray = bodyObject.getJSONArray("villains");
-                for (int j = 0; j < villainsArray.length(); j++) {
-                    // ADD EACH VILLAIN
-                    JSONObject villainObject = villainsArray.getJSONObject(j);
-                    Villain villain = new Villain();
-                    villain.setName(villainObject.getString("name"));
-                    book.getVillains().add(villain);
-                }
-            }
+            book = AppController.getInstance().getLibraryController().createBook(bookObject);
             // ADD BOOK TO LIBRARY LIST
-            Library.getInstance().getLibraryBooks().add(book);
+            AppController.getInstance().getLibraryController().getLibrary().getLibraryBooks().add(book);
         }
-
     }
+
 }
+
+

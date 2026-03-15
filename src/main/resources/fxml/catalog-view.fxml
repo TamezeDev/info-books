@@ -43,7 +43,7 @@
                                 <Label styleClass="labelTypeA" text="Este sera el mensaje de feedback" />
                             </children>
                         </VBox>
-                        <Button fx:id="goBackBtn" mnemonicParsing="false" styleClass="global_bg, btn_bg,button-typeA " text="Regresar al menú" />
+                        <Button fx:id="goBackBtn" mnemonicParsing="false" prefWidth="400.0" styleClass="global_bg, btn_bg,button-typeA " text="Regresar al menú" />
                     </children>
                     <padding>
                         <Insets bottom="30.0" />

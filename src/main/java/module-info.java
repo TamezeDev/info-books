@@ -10,8 +10,8 @@ module org.zeki.infobooks {
     opens org.zeki.infobooks to javafx.fxml;
     exports org.zeki.infobooks;
 
-    opens org.zeki.infobooks.controller.api to javafx.fxml;
     exports org.zeki.infobooks.controller.scene;
     opens org.zeki.infobooks.controller.scene to javafx.fxml;
-    exports org.zeki.infobooks.controller.api;
+    exports org.zeki.infobooks.controller.app;
+    opens org.zeki.infobooks.controller.app to javafx.fxml;
 }

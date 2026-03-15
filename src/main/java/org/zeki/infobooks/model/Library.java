@@ -12,20 +12,10 @@ public class Library {
 
     private List<Book> libraryBooks;
     private List<Book> favouriteBooks;
-    private boolean showFavourite;
 
-    private static Library instance;
-
-    private Library() {
+    public Library() {
         libraryBooks = new ArrayList<>();
         favouriteBooks = new ArrayList<>();
-    }
-
-    public static Library getInstance() {
-        if (instance == null) {
-            instance = new Library();
-        }
-        return instance;
     }
 
 }

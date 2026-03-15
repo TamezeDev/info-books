@@ -32,7 +32,16 @@
                <children>
                   <VBox fx:id="dataBookBox" alignment="TOP_CENTER" maxWidth="600.0" prefHeight="200.0" prefWidth="600.0">
                      <children>
-                        <TextField fx:id="searcherField" alignment="CENTER" maxWidth="-Infinity" prefWidth="200.0" promptText="Id a buscar" />
+                        <HBox fx:id="searchBox" alignment="CENTER">
+                           <children>
+                              <TextField fx:id="searcherField" alignment="CENTER" maxWidth="-Infinity" prefWidth="200.0" promptText="Id a buscar" />
+                              <ImageView fx:id="searchBtn" fitHeight="150.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" styleClass="button-typeA">
+                                 <image>
+                                    <Image url="@../img/search_ico.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </HBox>
                         <VBox fx:id="infoBookBox" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" styleClass="globalPane">
                            <children>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
@@ -44,6 +53,7 @@
                                           <Label fx:id="yearLabel" styleClass="labelTypeA" text="Año:" />
                                           <Label fx:id="pagesLabel" styleClass="labelTypeA" text="Páginas:" />
                                           <Label fx:id="publisherLabel" styleClass="labelTypeA" text="Editorial:" />
+                                          <Label fx:id="isbnLabel" layoutX="108.0" layoutY="187.0" styleClass="labelTypeA" text="Isbn:" />
                                        </children>
                                        <HBox.margin>
                                           <Insets />
@@ -54,7 +64,7 @@
                                           <Label styleClass="labelTypeA" text="Villanos" />
                                           <ScrollPane prefWidth="200.0">
                                              <content>
-                                                <VBox fx:id="villainsBox" alignment="CENTER" maxWidth="-Infinity" prefHeight="160.0" prefWidth="240.0" spacing="15.0">
+                                                <VBox fx:id="villainsBox" alignment="TOP_CENTER" maxWidth="-Infinity" prefHeight="160.0" prefWidth="240.0" spacing="15.0">
                                                    <padding>
                                                       <Insets top="20.0" />
                                                    </padding></VBox>
@@ -79,7 +89,7 @@
                   </VBox>
                   <VBox fx:id="feedbackBox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="500.0" styleClass="global_bg, feedBack_bg, button-typeA" visible="false">
                      <children>
-                        <Label fx:id="feedBackLabel" styleClass="labelTypeA" text="Este sera el mensaje de feedback" />
+                        <Label styleClass="labelTypeA" text="Este sera el mensaje de feedback" />
                      </children>
                   </VBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">

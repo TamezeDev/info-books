@@ -9,8 +9,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
+import org.zeki.infobooks.controller.app.AppController;
 import org.zeki.infobooks.model.Book;
-import org.zeki.infobooks.model.Library;
 import org.zeki.infobooks.util.PathHelper;
 import org.zeki.infobooks.util.SceneHelper;
 import org.zeki.infobooks.util.TransitionHelper;
@@ -44,7 +44,8 @@ public class CatalogViewController implements Initializable {
     }
 
     private void createBookGallery() {
-        if (Library.getInstance().getLibraryBooks().isEmpty() && !Library.getInstance().isShowFavourite()) {
+        if (AppController.getInstance().getLibraryController().getLibrary().getLibraryBooks().isEmpty() && !AppController.getInstance().isFavouriteSelected()) {
+            containerBookPane.setVisible(false);
             String message = "Error al cargar lista de libros";
             TransitionHelper.feedBackTransition(feedbackBox, message);
             return;
@@ -66,13 +67,16 @@ public class CatalogViewController implements Initializable {
             VBox bookCard = new VBox();
             bookCard.setAlignment(Pos.CENTER);
             bookCard.setSpacing(10);
-            bookCard.getStyleClass().addAll("bookCard", "button-typeA");
-            bookCard.setPrefWidth(180);
-            bookCard.setMaxSize(180, 280);
+            bookCard.getStyleClass().addAll("bookCard", "button-typeB");
+            bookCard.setMaxSize(140, 280);
 
             bookCard.getChildren().addAll(number, bookImg, title);
             // EVENT CARD
-            bookCard.setOnMouseClicked(event -> SceneHelper.changeScene(feedbackBox, pathHelper.getSEARCH_SCENE()));
+            bookCard.setOnMouseClicked(event -> {
+                AppController.getInstance().setShowOnlyInfo(true);
+                AppController.getInstance().setIdSelected(book.getId());
+                SceneHelper.changeScene(feedbackBox, pathHelper.getSEARCH_SCENE());
+            });
             // ADD TO CONTAINER
             containerBookPane.getChildren().add(bookCard);
         });
@@ -80,12 +84,17 @@ public class CatalogViewController implements Initializable {
     }
 
     private List<Book> checkUserChoice() {
-        List<Book> book;
-        if (Library.getInstance().isShowFavourite()) {
-            book = Library.getInstance().getFavouriteBooks();
+        List<Book> books;
+        if (AppController.getInstance().isFavouriteSelected()) {
+            books = AppController.getInstance().getLibraryController().getLibrary().getFavouriteBooks();
+            if (books.isEmpty()){
+                containerBookPane.setVisible(false);
+                String message = "La list está vacía";
+                TransitionHelper.feedBackTransition(feedbackBox,message);
+            }
         } else {
-            book = Library.getInstance().getLibraryBooks();
+            books = AppController.getInstance().getLibraryController().getLibrary().getLibraryBooks();
         }
-        return book;
+        return books;
     }
 }

@@ -2,11 +2,12 @@ package org.zeki.infobooks.controller.scene;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
-import org.zeki.infobooks.controller.api.ApiController;
-import org.zeki.infobooks.model.Library;
+import org.zeki.infobooks.controller.app.ApiController;
+import org.zeki.infobooks.controller.app.AppController;
 import org.zeki.infobooks.util.PathHelper;
 import org.zeki.infobooks.util.SceneHelper;
 
@@ -50,17 +51,29 @@ public class MainMenuViewController implements Initializable {
     }
 
     private void initListeners() {
-        catalogImg.setOnMouseClicked((_) -> showCompleteCatalog());
+        // SHOW FULL CATALOG
+        catalogImg.setOnMouseClicked((_) -> {
+            AppController.getInstance().setFavouriteSelected(false);
+            showCompleteCatalog();
+        });
+        // SHOW FAVOURITE LIST
+        favouritesImg.setOnMouseClicked(_ -> {
+            AppController.getInstance().setFavouriteSelected(true);
+            SceneHelper.changeScene(feedbackBox,path.getCATALOG_SCENE());
+        });
+        // SEARCH BY ID
+        searchImg.setOnMouseClicked(event -> {
+            AppController.getInstance().setShowOnlyInfo(false);
+            SceneHelper.changeScene(feedbackBox,path.getSEARCH_SCENE());
+        });
     }
 
     private void showCompleteCatalog() {
         // ONLY LOAD FIRST TIME (THEN USE LIST LOADED)
-        if (Library.getInstance().getLibraryBooks().isEmpty()) {
+        if (AppController.getInstance().getLibraryController().getLibrary().getLibraryBooks().isEmpty()) {
             ApiController api = new ApiController();
             api.getAllBooks(feedbackBox);
         }
         SceneHelper.changeScene(feedbackBox, path.getCATALOG_SCENE());
-
-
     }
 }
