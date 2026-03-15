@@ -1,16 +1,54 @@
-/* BOXES */
-.globalBox {
-    -fx-background-color: #15161B;
-    -fx-background-radius: 8px;
-}
 /* LABELS */
 .labelTypeA {
     -fx-font-size: 24px;
     -fx-font-family: "Arial Narrow";
     -fx-text-fill: #E7CDC8;
 }
-/* IMG_BUTTONS */
+/* BUTTONS */
 .button-typeA:hover{
     -fx-opacity: 0.8;
     -fx-cursor: hand;
+}
+/* GLOBAL CASE */
+.global_bg {
+    -fx-background-image: url("../img/btn_base_bg.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-size: contain;
+
+    -fx-background-color: transparent;
+    -fx-min-width: 400px;
+    -fx-min-height: 50px;
+
+    -fx-font-size: 24px;
+    -fx-font-family: "Arial Narrow";
+    -fx-text-fill: #E7CDC8;
+}
+
+.globalPane {
+    -fx-border-color: #794B3F;
+    -fx-border-width: 3px;
+    -fx-background-color: #241312;
+    -fx-background-radius: 8px;
+    -fx-border-radius: 8px;
+}
+/* SCROLL-AREA */
+ScrollPane {
+    -fx-background-color: transparent;
+}
+ScrollPane > .viewport {
+    -fx-background-color: transparent;
+}
+ScrollPane > .scroll-bar:vertical {
+    -fx-background-color: transparent;
+}
+ScrollPane > .scroll-bar:vertical .track {
+    -fx-background-color: #891E11;
+}
+ScrollPane > .scroll-bar:vertical .thumb {
+    -fx-background-color: #241312;
+    -fx-background-radius: 5;
+}
+ScrollPane > .scroll-bar:vertical .thumb:hover {
+    -fx-background-color: #7D574D ;
 }
