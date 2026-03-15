@@ -12,6 +12,7 @@ public class Library {
 
     private List<Book> libraryBooks;
     private List<Book> favouriteBooks;
+    private boolean showFavourite;
 
     private static Library instance;
 

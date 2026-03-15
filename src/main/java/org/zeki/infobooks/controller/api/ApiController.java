@@ -55,6 +55,7 @@ public class ApiController {
             Book book = new Book();
             book.setId(bookObject.getLong("id"));
             book.setYear(bookObject.getLong("Year"));
+            book.setTitle(bookObject.getString("Title"));
             book.setPublisher(bookObject.getString("Publisher"));
             book.setIsbn(bookObject.getString("ISBN"));
             book.setPages(bookObject.getLong("Pages"));

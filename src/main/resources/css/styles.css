@@ -4,11 +4,24 @@
     -fx-font-family: "Arial Narrow";
     -fx-text-fill: #E7CDC8;
 }
+.labelTypeB {
+    -fx-font-size: 20px;
+    -fx-font-family: "Arial Narrow";
+    -fx-text-fill: #E7CDC8;
+}
 /* BUTTONS */
 .button-typeA:hover{
     -fx-opacity: 0.8;
     -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 6, 0.4, 0 ,4)
 }
+/* BOOK CARDS */
+.bookCard {
+    -fx-background-color: #22242A;
+    -fx-background-radius: 8px;
+    -fx-padding: 10px 10px 10px 10px;
+}
+
 /* GLOBAL CASE */
 .btn_bg {
      -fx-background-image: url("../img/btn_base_bg.png");
