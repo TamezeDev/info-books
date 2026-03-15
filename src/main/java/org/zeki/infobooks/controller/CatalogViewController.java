@@ -25,12 +25,6 @@ public class CatalogViewController implements Initializable {
     @FXML
     private Button goBackBtn;
 
-    @FXML
-    private VBox mainMenuBox;
-
-    @FXML
-    private ImageView titleImg;
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 

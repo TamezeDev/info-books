@@ -19,7 +19,7 @@
       </ImageView>
       <VBox alignment="TOP_CENTER">
          <children>
-            <ImageView fx:id="titleImg" fitHeight="208.0" fitWidth="750.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="208.0" fitWidth="750.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../img/title.png" />
                </image>
@@ -27,7 +27,7 @@
                   <Insets top="35.0" />
                </VBox.margin>
             </ImageView>
-            <VBox fx:id="mainMenuBox" alignment="CENTER" spacing="20.0">
+            <VBox alignment="CENTER" spacing="20.0">
                <children>
                   <ScrollPane maxHeight="600.0" maxWidth="-Infinity" prefWidth="800.0">
                     <content>

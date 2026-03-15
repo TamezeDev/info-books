@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.zeki.infobooks.controller.SearchViewController">
+   <children>
+      <ImageView fitHeight="800.0" fitWidth="1200.0" pickOnBounds="true">
+         <image>
+            <Image url="@../img/main_bg.png" />
+         </image>
+      </ImageView>
+      <VBox alignment="TOP_CENTER">
+         <children>
+            <ImageView fitHeight="208.0" fitWidth="750.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/title.png" />
+               </image>
+               <VBox.margin>
+                  <Insets top="35.0" />
+               </VBox.margin>
+            </ImageView>
+            <VBox alignment="CENTER" spacing="20.0">
+               <children>
+                  <VBox fx:id="dataBookBox" alignment="TOP_CENTER" maxWidth="600.0" prefHeight="200.0" prefWidth="600.0">
+                     <children>
+                        <TextField fx:id="searcherField" alignment="CENTER" maxWidth="-Infinity" prefWidth="200.0" promptText="Id a buscar" />
+                        <VBox fx:id="infoBookBox" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" styleClass="globalPane">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                 <children>
+                                    <VBox alignment="CENTER" maxWidth="-Infinity" prefWidth="290.0" spacing="15.0" styleClass="separator">
+                                       <children>
+                                          <Label fx:id="idLabel" styleClass="labelTypeA" text="Id:" />
+                                          <Label fx:id="titleLabel" styleClass="labelTypeA" text="Título:" />
+                                          <Label fx:id="yearLabel" styleClass="labelTypeA" text="Año:" />
+                                          <Label fx:id="pagesLabel" styleClass="labelTypeA" text="Páginas:" />
+                                          <Label fx:id="publisherLabel" styleClass="labelTypeA" text="Editorial:" />
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </VBox>
+                                    <VBox alignment="CENTER" layoutX="237.0" layoutY="10.0" maxHeight="-Infinity" prefHeight="200.0" prefWidth="290.0">
+                                       <children>
+                                          <Label styleClass="labelTypeA" text="Villanos" />
+                                          <ScrollPane prefWidth="200.0">
+                                             <content>
+                                                <VBox fx:id="villainsBox" alignment="CENTER" maxWidth="-Infinity" prefHeight="160.0" prefWidth="240.0" spacing="15.0">
+                                                   <padding>
+                                                      <Insets top="20.0" />
+                                                   </padding></VBox>
+                                             </content>
+                                             <padding>
+                                                <Insets left="10.0" />
+                                             </padding>
+                                          </ScrollPane>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="20.0" top="30.0" />
+                           </VBox.margin>
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </VBox>
+                  <VBox fx:id="feedbackBox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="500.0" styleClass="global_bg, button-typeA" visible="false">
+                     <children>
+                        <Label fx:id="feedBackLabel" styleClass="labelTypeA" text="Este sera el mensaje de feedback" />
+                     </children>
+                  </VBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+                     <children>
+                        <Button fx:id="goBackBtn" mnemonicParsing="false" styleClass="global_bg" text="Regresar al menú" />
+                        <Button fx:id="saveBookBtn" mnemonicParsing="false" styleClass="global_bg" text="Guardar en favoritos" />
+                        <Button fx:id="deleteBookBtn" disable="true" layoutX="345.0" layoutY="26.0" mnemonicParsing="false" styleClass="global_bg" text="Eliminar de favoritos" />
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets bottom="30.0" />
+               </padding>
+            </VBox>
+         </children>
+      </VBox>
+   </children>
+</StackPane>

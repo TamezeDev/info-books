@@ -17,20 +17,37 @@
     -fx-background-size: contain;
 
     -fx-background-color: transparent;
-    -fx-min-width: 400px;
+    -fx-min-width: 250px;
     -fx-min-height: 50px;
 
     -fx-font-size: 24px;
     -fx-font-family: "Arial Narrow";
     -fx-text-fill: #E7CDC8;
 }
-
+/* TEXT_FIELD */
+TextField {
+  -fx-background-color: transparent;
+  -fx-text-box-border: transparent;
+  -fx-text-fill: #E7CDC8;
+  -fx-focus-color: transparent;
+  -fx-faint-focus-color: transparent;
+  -fx-border-color: transparent transparent #794B3F transparent;
+  -fx-border-width: 0 0 1px 0;
+  -fx-prompt-text-fill:  #E7CDC8;
+  -fx-font-size: 24px;
+}
+/* GENERAL DESIGN PANE */
 .globalPane {
     -fx-border-color: #794B3F;
     -fx-border-width: 3px;
     -fx-background-color: #241312;
     -fx-background-radius: 8px;
     -fx-border-radius: 8px;
+}
+/* SEPARATOR BOX-LINE */
+.separator {
+    -fx-border-width: 1px;
+    -fx-border-color: transparent  #794B3F  transparent transparent;
 }
 /* SCROLL-AREA */
 ScrollPane {
