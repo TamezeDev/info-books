@@ -10,7 +10,8 @@ public class PathHelper {
     private final String SEARCH_SCENE = "/fxml/search-view.fxml";
     // IMG
     private final String BOOK_IMG = "/img/book.png";
-    // FILE
+    private final String MAIN_ICON = "/img/main_icon.png";
+          // FILE
     private final String FAVOURITE_FILE = "src/main/resources/file/favourites.obj";
 
 }

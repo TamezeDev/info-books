@@ -15,6 +15,7 @@ public class AppController {
     private Book currentBook;
     private boolean showOnlyInfo;
     private boolean isFavouriteSelected;
+    private boolean startedApp;
 
     private AppController() {
         libraryController = new LibraryController();

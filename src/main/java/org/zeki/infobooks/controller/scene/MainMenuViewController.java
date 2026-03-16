@@ -11,6 +11,7 @@ import org.zeki.infobooks.controller.app.AppController;
 import org.zeki.infobooks.controller.app.FileController;
 import org.zeki.infobooks.util.PathHelper;
 import org.zeki.infobooks.util.SceneHelper;
+import org.zeki.infobooks.util.TransitionHelper;
 
 import java.io.File;
 import java.net.URL;
@@ -40,12 +41,16 @@ public class MainMenuViewController implements Initializable {
     private ImageView searchImg;
 
     @FXML
+    private Label signLabel;
+
+    @FXML
     private ImageView titleImg;
 
     private PathHelper path = new PathHelper();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        checkStartAnimation();
         initListeners();
     }
 
@@ -85,5 +90,11 @@ public class MainMenuViewController implements Initializable {
             api.getAllBooks(feedbackBox);
         }
         SceneHelper.changeScene(feedbackBox, path.getCATALOG_SCENE());
+    }
+
+    private void checkStartAnimation() {
+        if (!AppController.getInstance().isStartedApp()) {
+            TransitionHelper.initialTransition(titleImg, mainMenuBox, signLabel);
+        }
     }
 }
