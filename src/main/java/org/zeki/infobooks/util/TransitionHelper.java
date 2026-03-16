@@ -6,12 +6,15 @@ import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
 public class TransitionHelper {
+
     private static PauseTransition feedBackTransition = null;
 
-    public static void feedBackTransition(VBox feedbackBox,String message) {
+    public static void feedBackTransition(VBox feedbackBox, String message) {
+        // RESET TRANSITION
         if (feedBackTransition != null) {
             feedBackTransition.stop();
         }
+        // SHOW FEEDBACK MESSAGE 2 SECONDS
         Label label = (Label) feedbackBox.getChildren().getFirst();
         label.setText(message);
         feedbackBox.setVisible(true);

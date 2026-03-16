@@ -1,12 +1,10 @@
 package org.zeki.infobooks.controller.app;
 
-import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.zeki.infobooks.model.Book;
-import org.zeki.infobooks.model.Villain;
 import org.zeki.infobooks.util.TransitionHelper;
 
 import java.io.IOException;
@@ -46,8 +44,8 @@ public class ApiController {
             return null;
         }
         JSONObject bodyObject = new JSONObject(body);
-        JSONObject jsonObject = null;
-        try{
+        JSONObject jsonObject;
+        try {
             jsonObject = bodyObject.getJSONObject("data");
         } catch (JSONException e) {
             feedbackMessage = "Datos introducidos no válidos";
@@ -68,15 +66,21 @@ public class ApiController {
         }
         // CREATE ROOT OBJECT
         JSONObject bodyObject = new JSONObject(body);
-        JSONArray dataArray = bodyObject.getJSONArray("data");
-        //CREATE EACH BOOK FROM JSON ARRAY
-        Book book = null;
-        for (int i = 0; i < dataArray.length(); i++) {
+        try {
+            JSONArray dataArray = bodyObject.getJSONArray("data");
+            //CREATE EACH BOOK FROM JSON ARRAY
+            Book book = null;
+            for (int i = 0; i < dataArray.length(); i++) {
 
-            JSONObject bookObject = dataArray.getJSONObject(i);
-            book = AppController.getInstance().getLibraryController().createBook(bookObject);
-            // ADD BOOK TO LIBRARY LIST
-            AppController.getInstance().getLibraryController().getLibrary().getLibraryBooks().add(book);
+                JSONObject bookObject = dataArray.getJSONObject(i);
+                book = AppController.getInstance().getLibraryController().createBook(bookObject);
+                // ADD BOOK TO LIBRARY LIST
+                AppController.getInstance().getLibraryController().getLibrary().getLibraryBooks().add(book);
+            }
+
+        } catch (JSONException e) {
+            feedbackMessage = "Error al obtener los datos";
+            TransitionHelper.feedBackTransition(feedbackBox, feedbackMessage);
         }
     }
 

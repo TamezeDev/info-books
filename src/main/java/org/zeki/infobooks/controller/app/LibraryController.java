@@ -29,16 +29,23 @@ public class LibraryController {
 
     public Book getSelectedBook(long idBook) {
         List<Book> books = library.getLibraryBooks();
-        return books.stream().filter(book -> book.getId() == idBook).findFirst().get();
+        Book bookFound = books.stream().filter(book -> book.getId() == idBook).findFirst().orElse(null);
+        if (bookFound == null) {
+            books = library.getFavouriteBooks();
+            bookFound = books.stream().filter(book -> book.getId() == idBook).findFirst().orElse(null);
+        }
+        return bookFound;
     }
 
     public void addBookToFavourite(VBox feedbackBox) {
         String message;
+        // POSSIBLE NULL BOOK
         if (AppController.getInstance().getCurrentBook() == null) {
             message = "No hay libro seleccionado";
             TransitionHelper.feedBackTransition(feedbackBox, message);
             return;
         }
+        // FAVOURITE LIST CONTAINS BOOK (PREVIOUSLY BUTTON DESACTIVATE)
         if (checkIfBookInFavourites(AppController.getInstance().getCurrentBook().getId())) {
             message = "El libro ya está en tus favoritos";
             TransitionHelper.feedBackTransition(feedbackBox, message);

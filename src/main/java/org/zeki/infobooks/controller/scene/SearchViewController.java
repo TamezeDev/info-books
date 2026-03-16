@@ -117,11 +117,14 @@ public class SearchViewController implements Initializable {
     private void showInfoBook() {
         // HIDE INFO BOX BEFORE SEARCH
         String idSelected = searcherField.getText();
-        Book book = apiController.getSingleBook(feedbackBox, idSelected);
-        if (book != null) {
-            AppController.getInstance().setCurrentBook(book);
-            setDataBook(book);
-            infoBookBox.setVisible(true);
+
+        if (!idSelected.isBlank()) {
+            Book book = apiController.getSingleBook(feedbackBox, idSelected);
+            if (book != null) {
+                AppController.getInstance().setCurrentBook(book);
+                setDataBook(book);
+                infoBookBox.setVisible(true);
+            }
         }
     }
 

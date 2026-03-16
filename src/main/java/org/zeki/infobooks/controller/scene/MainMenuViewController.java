@@ -8,9 +8,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import org.zeki.infobooks.controller.app.ApiController;
 import org.zeki.infobooks.controller.app.AppController;
+import org.zeki.infobooks.controller.app.FileController;
 import org.zeki.infobooks.util.PathHelper;
 import org.zeki.infobooks.util.SceneHelper;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -24,9 +26,6 @@ public class MainMenuViewController implements Initializable {
 
     @FXML
     private ImageView favouritesImg;
-
-    @FXML
-    private Label feedBackLabel;
 
     @FXML
     private VBox feedbackBox;
@@ -59,13 +58,23 @@ public class MainMenuViewController implements Initializable {
         // SHOW FAVOURITE LIST
         favouritesImg.setOnMouseClicked(_ -> {
             AppController.getInstance().setFavouriteSelected(true);
-            SceneHelper.changeScene(feedbackBox,path.getCATALOG_SCENE());
+            SceneHelper.changeScene(feedbackBox, path.getCATALOG_SCENE());
         });
         // SEARCH BY ID
-        searchImg.setOnMouseClicked(event -> {
+        searchImg.setOnMouseClicked(_ -> {
             AppController.getInstance().setShowOnlyInfo(false);
             AppController.getInstance().setCurrentBook(null);
-            SceneHelper.changeScene(feedbackBox,path.getSEARCH_SCENE());
+            SceneHelper.changeScene(feedbackBox, path.getSEARCH_SCENE());
+        });
+        // EXPORT FAVOURITE BOOKS
+        exportImg.setOnMouseClicked(_ -> {
+            FileController fc = new FileController();
+            fc.exportFavourites(feedbackBox);
+        });
+        // IMPORT FAVOURITE BOOKS
+        importImg.setOnMouseClicked(_ -> {
+            FileController fc = new FileController();
+            fc.importFavourites(feedbackBox);
         });
     }
 
