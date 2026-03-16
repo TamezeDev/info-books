@@ -21,11 +21,10 @@ public class SceneHelper {
             stage.show();
 
         } catch (IOException e) {
+            System.err.println("ERROR: " + e.getStackTrace());
             String feedbackMessage = "Error al cargar scene";
             VBox feedbackBox = (VBox) node;
             TransitionHelper.feedBackTransition(feedbackBox, feedbackMessage);
-            System.err.println("Error al capturar algún atributo de nodo");
-            e.getMessage();
         }
     }
 }

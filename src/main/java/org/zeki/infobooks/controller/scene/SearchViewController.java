@@ -22,10 +22,6 @@ import java.util.ResourceBundle;
 
 public class SearchViewController implements Initializable {
 
-
-    @FXML
-    private VBox dataBookBox;
-
     @FXML
     private Button deleteBookBtn;
 
@@ -71,14 +67,12 @@ public class SearchViewController implements Initializable {
     @FXML
     private ImageView searchBtn;
 
-
     PathHelper pathHelper = new PathHelper();
     ApiController apiController = new ApiController();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         checkUserChoice();
-        visibleDeleteButton();
         initListeners();
     }
 
@@ -86,17 +80,28 @@ public class SearchViewController implements Initializable {
         // RETURN TO MAIN MENU
         goBackBtn.setOnAction(event -> SceneHelper.changeScene(feedbackBox, checkOnlyView()));
         // SEARCH BY ID
-        searchBtn.setOnMouseClicked(event -> showInfoBook());
+        searchBtn.setOnMouseClicked(event -> {
+            showInfoBook();
+        });
+        // SAVE BOOK IN FAVOURITE LIST
+        saveBookBtn.setOnAction(action -> {
+            AppController.getInstance().getLibraryController().addBookToFavourite(feedbackBox);
+            activateButtons();
+        });
+        // DELETE BOOK FROM FAVOURITE LIST
+        deleteBookBtn.setOnAction(_ -> {
+            AppController.getInstance().getLibraryController().deleteBookFromFavourites(feedbackBox);
+            activateButtons();
+        });
     }
 
     private void checkUserChoice() {
         // CHECK IF USER CHOSE ID FROM CATALOG
         if (AppController.getInstance().isShowOnlyInfo()) {
-            deleteBookBtn.setVisible(true);
             searchBox.setVisible(false);
             goBackBtn.setText("Volver Atrás");
             // SET SELECTED BOOK
-            Book selectedBook = AppController.getInstance().getLibraryController().getSelectedBook(AppController.getInstance().getIdSelected());
+            Book selectedBook = AppController.getInstance().getLibraryController().getSelectedBook(AppController.getInstance().getCurrentBook().getId());
             if (selectedBook == null) {
                 infoBookBox.setVisible(false);
                 String message = "Error al cargar datos del libro";
@@ -110,21 +115,28 @@ public class SearchViewController implements Initializable {
     }
 
     private void showInfoBook() {
+        // HIDE INFO BOX BEFORE SEARCH
         String idSelected = searcherField.getText();
         Book book = apiController.getSingleBook(feedbackBox, idSelected);
         if (book != null) {
+            AppController.getInstance().setCurrentBook(book);
             setDataBook(book);
             infoBookBox.setVisible(true);
         }
     }
 
     private void setDataBook(Book selectedBook) {
-        idLabel.setText(String.valueOf(selectedBook.getId()));
-        titleLabel.setText(selectedBook.getTitle());
-        pagesLabel.setText(String.valueOf(selectedBook.getPages()));
-        publisherLabel.setText(selectedBook.getPublisher());
-        isbnLabel.setText(String.valueOf(selectedBook.getIsbn()));
-        yearLabel.setText(String.valueOf(selectedBook.getYear()));
+        // SET CURRENT BOOK
+        AppController.getInstance().setCurrentBook(selectedBook);
+        villainsBox.getChildren().clear();
+        activateButtons();
+        // SET ALL INFO
+        idLabel.setText("Id: " + selectedBook.getId());
+        titleLabel.setText("Título: " + selectedBook.getTitle());
+        pagesLabel.setText("Páginas: " + selectedBook.getPages());
+        publisherLabel.setText("Editorial: " + selectedBook.getPublisher());
+        isbnLabel.setText("ISBN: " + selectedBook.getIsbn());
+        yearLabel.setText("Año: " + selectedBook.getYear());
 
         List<Villain> villains = selectedBook.getVillains();
 
@@ -135,14 +147,25 @@ public class SearchViewController implements Initializable {
         });
     }
 
-    private void visibleDeleteButton() {
+    private void activateButtons() {
         // IF IT HAS THIS ID IN FAVOURITES ACTIVATE DELETE BUTTON
-        if (AppController.getInstance().getLibraryController().checkIfBookInFavourites(AppController.getInstance().getIdSelected())) {
-            deleteBookBtn.setVisible(true);
+        Book currentBook = AppController.getInstance().getCurrentBook();
+        if (currentBook == null) {
+            deleteBookBtn.setDisable(true);
+            saveBookBtn.setDisable(false);
+            return;
+        }
+        if (AppController.getInstance().getLibraryController().checkIfBookInFavourites(AppController.getInstance().getCurrentBook().getId())) {
+            deleteBookBtn.setDisable(false);
+            saveBookBtn.setDisable(true);
+        } else {
+            deleteBookBtn.setDisable(true);
+            saveBookBtn.setDisable(false);
         }
     }
 
     private String checkOnlyView() {
+        // CHECK SCENE WHEN GO BACK
         if (AppController.getInstance().isShowOnlyInfo()) {
             return pathHelper.getCATALOG_SCENE();
         } else {

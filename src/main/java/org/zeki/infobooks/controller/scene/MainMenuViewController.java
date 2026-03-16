@@ -64,6 +64,7 @@ public class MainMenuViewController implements Initializable {
         // SEARCH BY ID
         searchImg.setOnMouseClicked(event -> {
             AppController.getInstance().setShowOnlyInfo(false);
+            AppController.getInstance().setCurrentBook(null);
             SceneHelper.changeScene(feedbackBox,path.getSEARCH_SCENE());
         });
     }

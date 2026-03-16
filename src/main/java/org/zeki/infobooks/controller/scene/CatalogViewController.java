@@ -31,7 +31,7 @@ public class CatalogViewController implements Initializable {
     @FXML
     private Button goBackBtn;
 
-    private PathHelper pathHelper = new PathHelper();
+    private final PathHelper pathHelper = new PathHelper();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -74,7 +74,7 @@ public class CatalogViewController implements Initializable {
             // EVENT CARD
             bookCard.setOnMouseClicked(event -> {
                 AppController.getInstance().setShowOnlyInfo(true);
-                AppController.getInstance().setIdSelected(book.getId());
+                AppController.getInstance().setCurrentBook(book);
                 SceneHelper.changeScene(feedbackBox, pathHelper.getSEARCH_SCENE());
             });
             // ADD TO CONTAINER
@@ -87,10 +87,10 @@ public class CatalogViewController implements Initializable {
         List<Book> books;
         if (AppController.getInstance().isFavouriteSelected()) {
             books = AppController.getInstance().getLibraryController().getLibrary().getFavouriteBooks();
-            if (books.isEmpty()){
+            if (books.isEmpty()) {
                 containerBookPane.setVisible(false);
-                String message = "La list está vacía";
-                TransitionHelper.feedBackTransition(feedbackBox,message);
+                String message = "La lista de favoritos está vacía";
+                TransitionHelper.feedBackTransition(feedbackBox, message);
             }
         } else {
             books = AppController.getInstance().getLibraryController().getLibrary().getLibraryBooks();

@@ -3,6 +3,7 @@ package org.zeki.infobooks.controller.app;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.zeki.infobooks.model.Book;
 import org.zeki.infobooks.model.Villain;
@@ -29,7 +30,7 @@ public class ApiController {
         try {
             response = client.send(request, HttpResponse.BodyHandlers.ofString());
         } catch (IOException | InterruptedException e) {
-            Label label = (Label) feedbackBox.getChildren().getFirst();
+            System.err.println("Error al acceder a la api: " + e.getMessage());
             feedbackMessage = "Error al obtener datos";
             TransitionHelper.feedBackTransition(feedbackBox, feedbackMessage);
         }
@@ -45,7 +46,14 @@ public class ApiController {
             return null;
         }
         JSONObject bodyObject = new JSONObject(body);
-        JSONObject jsonObject = bodyObject.getJSONObject("data");
+        JSONObject jsonObject = null;
+        try{
+            jsonObject = bodyObject.getJSONObject("data");
+        } catch (JSONException e) {
+            feedbackMessage = "Datos introducidos no válidos";
+            TransitionHelper.feedBackTransition(feedbackBox, feedbackMessage);
+            return null;
+        }
         // CREATE BOOK
         return AppController.getInstance().getLibraryController().createBook(jsonObject);
     }

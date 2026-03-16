@@ -17,7 +17,7 @@ public class Book {
     private long pages;
     private List<Villain> villains;
 
-    public Book(){
+    public Book() {
         villains = new ArrayList<>();
     }
 }
